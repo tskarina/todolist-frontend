@@ -26,10 +26,13 @@ export const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/login", {
-        username,
-        password,
-      });
+      const response = await axios.post(
+        "https://todolist-backend-bci8.onrender.com/login",
+        {
+          username,
+          password,
+        }
+      );
       console.log("Token de acesso:", response.data.accessToken);
       navigate("/home");
     } catch (error) {

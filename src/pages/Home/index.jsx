@@ -100,7 +100,9 @@ export const Home = () => {
 
   const carregarTarefas = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/tarefas");
+      const response = await axios.get(
+        "https://todolist-backend-bci8.onrender.com/tarefas"
+      );
       setTarefas(response.data);
     } catch (err) {
       console.error("Erro ao carregar as tarefas:", err);
@@ -110,7 +112,7 @@ export const Home = () => {
   const adicionarTarefa = async (novaTarefa) => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/tarefas",
+        "https://todolist-backend-bci8.onrender.com/tarefas",
         novaTarefa
       );
       setTarefas([...tarefas, response.data]);
@@ -123,7 +125,7 @@ export const Home = () => {
   const editarTarefa = async (tarefaEditada) => {
     try {
       const response = await axios.put(
-        `http://localhost:3001/tarefas/${tarefaEditada.id}`,
+        `https://todolist-backend-bci8.onrender.com/tarefas/${tarefaEditada.id}`,
         tarefaEditada
       );
       const tarefasAtualizadas = tarefas.map((tarefa) => {
@@ -142,7 +144,9 @@ export const Home = () => {
 
   const excluirTarefa = async (id) => {
     try {
-      await axios.delete(`http://localhost:3001/tarefas/${id}`);
+      await axios.delete(
+        `https://todolist-backend-bci8.onrender.com/tarefas/${id}`
+      );
       setTarefas(tarefas.filter((tarefa) => tarefa.id !== id));
     } catch (error) {
       console.error("Erro ao excluir tarefa:", error);
@@ -151,9 +155,12 @@ export const Home = () => {
 
   const marcarComoRealizada = async (id) => {
     try {
-      await axios.put(`http://localhost:3001/tarefas/${id}`, {
-        completed: true,
-      });
+      await axios.put(
+        `https://todolist-backend-bci8.onrender.com/tarefas/${id}`,
+        {
+          completed: true,
+        }
+      );
       const tarefasAtualizadas = tarefas.map((tarefa) => {
         if (tarefa.id === id) {
           return { ...tarefa, completed: true };
